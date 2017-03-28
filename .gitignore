@@ -1,0 +1,12 @@
+*.class
+*.iml
+.idea
+out
+*.*~
+*~
+.*~
+.DS_Store
+assignment*.iml
+assignment*.ipr
+assignment*.iws
+target
