@@ -5,4 +5,9 @@ package edu.neu.ccs.cs5004.assignment10.problem1;
  */
 public class TextFile extends File {
     private Text content;
+
+    public TextFile(String fileName, Text content) {
+        super(fileName);
+        this.content = content;
+    }
 }

@@ -8,9 +8,10 @@ import java.util.Map;
 public class MarkdownProcessor implements FileProcessor {
     private Map headerLevel;
     private Map enumlistLevel;
+    private StringBuilder processedText;
 
     @Override
-    public FileOutput process(FileInput input) {
+    public File process(File inputFile) {
 
     }
 }

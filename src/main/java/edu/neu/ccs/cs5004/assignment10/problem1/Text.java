@@ -5,4 +5,8 @@ package edu.neu.ccs.cs5004.assignment10.problem1;
  */
 public class Text {
     private String text;
+
+    public Text(String text) {
+        this.text = text;
+    }
 }
