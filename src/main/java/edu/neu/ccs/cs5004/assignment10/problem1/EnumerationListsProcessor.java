@@ -16,7 +16,12 @@ public class EnumerationListsProcessor extends AbstractLineProcessor {
 
         if (currLevel >  lastLevel + 1)  throw new IllegalArgumentException("skipping nesting level"); // TODO: exception
         if (currLevel == lastLevel + 1)  map.put(currLevel, 1);
-        else                             map.put(currLevel, map.get(currLevel)+1);
+        else {
+            map.put(currLevel, map.get(currLevel)+1);
+            for (int i = currLevel+1; i <= lastLevel; i++) {
+                map.remove(i);  // remove deeper nesting levels
+            }
+        }
         String processedLine;
         if (currLevel % 2 == 0) {
             String letter = numToLetters(map.get(currLevel));
