@@ -8,9 +8,9 @@ public class Main {
         if (args.length != 1)
             throw new IllegalArgumentException("Must have ONE command line argument");
         String fileName = args[0];
-        Text fileContent = FileProcessor.getFileContent(fileName);
-        File inputTextFile = new TextFile(fileName, fileContent);
+        File inputTextFile = new TextFile(fileName);
         FileProcessor mdProcessor = new MarkdownProcessor();
         File outputFile = mdProcessor.process(inputTextFile);
+        outputFile.writeContent();
     }
 }

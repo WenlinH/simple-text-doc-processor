@@ -9,4 +9,8 @@ public class Text {
     public Text(String text) {
         this.text = text;
     }
+
+    public String getText() {
+        return text;
+    }
 }
