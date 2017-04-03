@@ -1,23 +1,24 @@
 package edu.neu.ccs.cs5004.assignment10.problem1;
 
 import java.util.NavigableMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Jeremy on 4/2/17.
  */
-public class EnumerationListsProcessor extends AbstractLineProcessor {
+public class EnumerationListsProcessor extends ListProcessor {
     @Override
     public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
-        NavigableMap<Integer, Integer> map = markdownProcessor.getEnumlistLevel();
-        int currLevel = getCurrentEnumLevel(line);
+        NavigableMap<Integer, Integer> map = markdownProcessor.getListLevels();
+        int currLevel = currentNestingLevel(line);
         int lastLevel = map.size() == 0 ? 0 : map.lastKey();
 
         if (currLevel >  lastLevel + 1)  throw new IllegalArgumentException("skipping nesting level"); // TODO: exception
         if (currLevel == lastLevel + 1)  map.put(currLevel, 1);
         else {
-            map.put(currLevel, map.get(currLevel)+1);
+            int levelValue = map.get(currLevel);
+            if (levelValue == -1)
+                throw new IllegalArgumentException("mixing enum and itemization at the same level is not allowed");  // TODO
+            map.put(currLevel, levelValue+1);
             for (int i = currLevel+1; i <= lastLevel; i++) {
                 map.remove(i);  // remove deeper nesting levels
             }
@@ -31,21 +32,6 @@ public class EnumerationListsProcessor extends AbstractLineProcessor {
         }
 
         return new Text(processedLine);
-    }
-
-    private int getCurrentEnumLevel(Text line) {
-        Pattern regex = Pattern.compile("^([ ]*)[1]?\\..*");  // match all leading spaces
-        Matcher matcher = regex.matcher(line.getText());
-        int numOfSpaces = 0;
-
-        if (matcher.find()) {
-            String match = matcher.group(1);
-            numOfSpaces = match.length();
-        }
-
-        if (numOfSpaces % 2 == 1)   throw new IllegalArgumentException("num of spaces can only be even"); // TODO
-
-        return numOfSpaces / 2 + 1;  // current nesting level
     }
 
     private String numToLetters(int n) {

@@ -1,6 +1,5 @@
 package edu.neu.ccs.cs5004.assignment10.problem1;
 
-import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 import java.io.BufferedReader;
@@ -13,12 +12,12 @@ import java.io.IOException;
  */
 public class MarkdownProcessor implements FileProcessor {
     private NavigableMap<Integer, Integer> headerLevel;
-    private NavigableMap<Integer, Integer> enumlistLevel;
+    private NavigableMap<Integer, Integer> listLevels;
     private StringBuilder processedText;
 
     public MarkdownProcessor() {
         headerLevel = new TreeMap();
-        enumlistLevel = new TreeMap();
+        listLevels = new TreeMap();
         processedText = new StringBuilder();
     }
 
@@ -66,11 +65,11 @@ public class MarkdownProcessor implements FileProcessor {
         return headerLevel;
     }
 
-    protected NavigableMap<Integer, Integer> getEnumlistLevel() {
-        return enumlistLevel;
+    protected NavigableMap<Integer, Integer> getListLevels() {
+        return listLevels;
     }
 
-    protected void resetEnumlistLevel() {
-        this.enumlistLevel = new TreeMap<>();
+    protected void resetListLevel() {
+        this.listLevels = new TreeMap<>();
     }
 }
