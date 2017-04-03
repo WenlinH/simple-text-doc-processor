@@ -19,8 +19,8 @@ public class EnumerationListsProcessor extends AbstractLineProcessor {
         else                             map.put(currLevel, map.get(currLevel)+1);
         String processedLine;
         if (currLevel % 2 == 0) {
-            String num = String.valueOf((char) ((map.get(currLevel)-1) + 'a')) + ".";
-            processedLine = line.getText().replaceFirst("[1]?\\.", num);
+            String letter = numToLetters(map.get(currLevel));
+            processedLine = line.getText().replaceFirst("[1]?\\.", letter);
         } else {
             processedLine = line.getText().replaceFirst("[1]?\\.", map.get(currLevel).toString() + ".");
         }
@@ -41,6 +41,15 @@ public class EnumerationListsProcessor extends AbstractLineProcessor {
         if (numOfSpaces % 2 == 1)   throw new IllegalArgumentException("num of spaces can only be even"); // TODO
 
         return numOfSpaces / 2 + 1;  // current nesting level
+    }
+
+    private String numToLetters(int n) {
+        StringBuilder res = new StringBuilder();
+        while (n-- != 0) {
+            res.append((char) ('a' + n % 26));
+            n /= 26;
+        }
+        return res.reverse().append(".").toString();
     }
 
 }
