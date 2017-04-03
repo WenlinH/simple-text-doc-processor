@@ -5,7 +5,7 @@ import java.util.NavigableMap;
 /**
  * Created by Jeremy on 4/2/17.
  */
-public class EnumerationListsProcessor extends ListProcessor {
+class EnumerationListsProcessor extends AbstractListProcessor {
     @Override
     public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
         NavigableMap<Integer, Integer> map = markdownProcessor.getListLevels();

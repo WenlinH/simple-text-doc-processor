@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Created by Jeremy on 4/2/17.
  */
-public class MarkdownProcessor implements FileProcessor {
+class MarkdownProcessor implements FileProcessor {
     private NavigableMap<Integer, Integer> headerLevel;
     private NavigableMap<Integer, Integer> listLevels;
     private StringBuilder processedText;
@@ -23,7 +23,7 @@ public class MarkdownProcessor implements FileProcessor {
 
     @Override
     public File process(File inputFile) {
-        TextFile textFile = new TextFile(inputFile.getFileName());
+        AbstractTextFile textFile = new MarkdownFile(inputFile.getFileName());
         Text fileContent = textFile.getContent();
 
         try (BufferedReader bufferedReader = new BufferedReader(new StringReader(fileContent.getText()))) {
@@ -40,7 +40,7 @@ public class MarkdownProcessor implements FileProcessor {
         }
 
         String outFileName = inputFile.getFileName() + ".out";
-        return new TextFile(outFileName, new Text(this.processedText.toString()));
+        return new MarkdownFile(outFileName, new Text(this.processedText.toString()));
     }
 
     private LineProcessor getLineProcessor(String type) {

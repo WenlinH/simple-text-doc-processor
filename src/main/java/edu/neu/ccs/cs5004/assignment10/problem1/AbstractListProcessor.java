@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Jeremy on 4/3/17.
  */
-public abstract class ListProcessor extends AbstractLineProcessor {
+abstract class AbstractListProcessor extends AbstractLineProcessor {
     protected int currentNestingLevel(Text line) {
         Pattern regex = Pattern.compile("^([ ]*)(1.|.|\\*) .*"); // match all leading spaces,
         Matcher matcher = regex.matcher(line.getText());         // followed by . or 1. or *

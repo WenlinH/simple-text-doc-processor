@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Jeremy on 4/2/17.
  */
-public abstract class AbstractLineProcessor implements LineProcessor {
+abstract class AbstractLineProcessor implements LineProcessor {
 
     public static final String HEADER = "header";
     public static final String ITEMIZATION = "itemization";

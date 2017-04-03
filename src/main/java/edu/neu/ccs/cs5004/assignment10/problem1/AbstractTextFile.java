@@ -12,21 +12,20 @@ import java.io.BufferedWriter;
 /**
  * Created by Jeremy on 4/2/17.
  */
-public class TextFile extends File<Text> {
-    private Text content;
+abstract class AbstractTextFile extends File<Text> {
 
-    public TextFile(String fileName) {
+    public AbstractTextFile(String fileName) {
         super(fileName);
         this.content = readContent(fileName);
     }
 
-    public TextFile(String fileName, Text content) {
+    public AbstractTextFile(String fileName, Text content) {
         super(fileName);
         this.content = content;
     }
 
     @Override
-    public Text getContent() {
+    protected Text getContent() {
         return content;
     }
 
