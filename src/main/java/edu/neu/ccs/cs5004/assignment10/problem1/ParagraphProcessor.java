@@ -6,6 +6,8 @@ package edu.neu.ccs.cs5004.assignment10.problem1;
 public class ParagraphProcessor extends AbstractLineProcessor {
     @Override
     public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
-        return null;
+        if (!markdownProcessor.getEnumlistLevel().isEmpty() && line.getText().trim().equals(""))
+            markdownProcessor.resetEnumlistLevel();
+        return line;
     }
 }

@@ -16,7 +16,7 @@ public abstract class AbstractLineProcessor implements LineProcessor {
     protected static String getLineTextType(String line) {
         Pattern regexHeader      = Pattern.compile("^[#]+ .*");
         Pattern regexItemization = Pattern.compile("^[ ]*[*\\-+] .*");
-        Pattern regexEnumeration = Pattern.compile("^[ ]*[1]?\\..*");
+        Pattern regexEnumeration = Pattern.compile("^[ ]*[1]?\\..*");  // optional 1 + .
         Matcher matcherHead  = regexHeader.matcher(line);
         Matcher matcherItem  = regexItemization.matcher(line);
         Matcher matcherEnum  = regexEnumeration.matcher(line);

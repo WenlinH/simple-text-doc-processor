@@ -1,6 +1,7 @@
 package edu.neu.ccs.cs5004.assignment10.problem1;
 
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.TreeMap;
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -11,8 +12,8 @@ import java.io.IOException;
  * Created by Jeremy on 4/2/17.
  */
 public class MarkdownProcessor implements FileProcessor {
-    private Map<Integer, Integer> headerLevel;
-    private Map<Integer, Integer> enumlistLevel;
+    private NavigableMap<Integer, Integer> headerLevel;
+    private NavigableMap<Integer, Integer> enumlistLevel;
     private StringBuilder processedText;
 
     public MarkdownProcessor() {
@@ -32,14 +33,14 @@ public class MarkdownProcessor implements FileProcessor {
                 String type = AbstractLineProcessor.getLineTextType(line);
                 LineProcessor lineProcessor = getLineProcessor(type);
                 Text result = lineProcessor.processLine(new Text(line), this);
-                processedText.append(result.getText());
+                processedText.append(result.getText()).append("\n");
             }
         } catch (IOException ioe) {
             System.out.println("Something went wrong! : " + ioe.getMessage());
             ioe.printStackTrace();
         }
 
-        String outFileName = "out." + inputFile.getFileName();
+        String outFileName = inputFile.getFileName() + ".out";
         return new TextFile(outFileName, new Text(this.processedText.toString()));
     }
 
@@ -61,4 +62,15 @@ public class MarkdownProcessor implements FileProcessor {
         return lineProcessor;
     }
 
+    protected NavigableMap<Integer, Integer> getHeaderLevel() {
+        return headerLevel;
+    }
+
+    protected NavigableMap<Integer, Integer> getEnumlistLevel() {
+        return enumlistLevel;
+    }
+
+    protected void resetEnumlistLevel() {
+        this.enumlistLevel = new TreeMap<>();
+    }
 }

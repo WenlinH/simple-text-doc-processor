@@ -6,6 +6,7 @@ package edu.neu.ccs.cs5004.assignment10.problem1;
 public class ItemizationListProcessor extends AbstractLineProcessor {
     @Override
     public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
-        return null;
+        String newLine = line.getText().replaceFirst("[*\\-+]", "*");
+        return new Text(newLine);
     }
 }
