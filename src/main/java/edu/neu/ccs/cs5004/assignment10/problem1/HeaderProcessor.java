@@ -9,52 +9,54 @@ import java.util.regex.Pattern;
  * Created by Jeremy on 4/2/17.
  */
 class HeaderProcessor extends AbstractLineProcessor {
-    @Override
-    public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
+  @Override
+  public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
 
-        NavigableMap<Integer, Integer> map = markdownProcessor.getHeaderLevel();
-        StringBuilder numbering = new StringBuilder();
+    NavigableMap<Integer, Integer> map = markdownProcessor.getHeaderLevel();
+    StringBuilder numbering = new StringBuilder();
 
-        int currLevel = currentNumberingLevel(line);
+    int currLevel = currentNumberingLevel(line);
 
-        int lastLevel = map.size() == 0 ? 0 : map.lastKey();
-        if (currLevel > lastLevel)  // fill in gaps with 1s for deeper nesting levels
-            for (int i = lastLevel+1; i <= currLevel; i++)
-                map.put(i, 1);
-        else
-            map.put(currLevel, map.get(currLevel)+1);
+    int lastLevel = map.size() == 0 ? 0 : map.lastKey();
+    if (currLevel > lastLevel)  // fill in gaps with 1s for deeper nesting levels
+      for (int i = lastLevel + 1; i <= currLevel; i++)
+        map.put(i, 1);
+    else
+      map.put(currLevel, map.get(currLevel) + 1);
 
-        if (currLevel < lastLevel)  // remove deeper nesting levels
-            for (int i = currLevel+1; i <= lastLevel; i++)
-                map.remove(i);
+    if (currLevel < lastLevel)  // remove deeper nesting levels
+      for (int i = currLevel + 1; i <= lastLevel; i++)
+        map.remove(i);
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-            if (numbering.length() != 0)   numbering.append(".");
-            numbering.append(entry.getValue());
-        }
-
-        String newLine = line.getContent().replaceFirst("#+", numbering.toString());
-
-        return new Text(newLine.toString());
+    for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+      if (numbering.length() != 0) numbering.append(".");
+      numbering.append(entry.getValue());
     }
 
-    /**
-     * Given a line of text with the type of header,
-     * returns the current numbering level of the header.
-     * @param line the line to be checked
-     * @return the current numbering level of the header
-     */
-    private int currentNumberingLevel(Text line) {
-        Pattern regex = Pattern.compile("^(#+) ");
-        Matcher matcher = regex.matcher(line.getContent());
+    String newLine = line.getContent().replaceFirst("#+", numbering.toString());
 
-        int currLevel = 0;
+    return new Text(newLine.toString());
+  }
 
-        if (matcher.find()) {
-            String match = matcher.group(1);
-            currLevel = match.length();
-        }
+  /**
+   * Given a line of text with the type of header,
+   * returns the current numbering level of the header.
+   *
+   * @param line the line to be checked
+   *
+   * @return the current numbering level of the header
+   */
+  private int currentNumberingLevel(Text line) {
+    Pattern regex = Pattern.compile("^(#+) ");
+    Matcher matcher = regex.matcher(line.getContent());
 
-        return currLevel;
+    int currLevel = 0;
+
+    if (matcher.find()) {
+      String match = matcher.group(1);
+      currLevel = match.length();
     }
+
+    return currLevel;
+  }
 }
