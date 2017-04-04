@@ -13,6 +13,17 @@ abstract class AbstractLineProcessor implements LineProcessor {
     public static final String ENUMERATION = "enumeration";
     public static final String PARAGRAPH = "paragraph";
 
+    /**
+     * Given a line, returns a string representing the type of the current line,
+     * which can only be one of
+     * - header
+     * - itemization
+     * - enumeration
+     * - paragraph
+     *
+     * @param line a line to be processed by the line processor
+     * @return the type of the current line
+     */
     protected static String getLineTextType(String line) {
         Pattern regexHeader      = Pattern.compile("^[#]+ .*");
         Pattern regexItemization = Pattern.compile("^[ ]*[*\\-+] .*");

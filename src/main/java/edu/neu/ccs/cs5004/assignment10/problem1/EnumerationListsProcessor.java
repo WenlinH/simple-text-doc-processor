@@ -27,14 +27,26 @@ class EnumerationListsProcessor extends AbstractListProcessor {
         String processedLine;
         if (currLevel % 2 == 0) {
             String letter = numToLetters(map.get(currLevel));
-            processedLine = line.getText().replaceFirst("[1]?\\.", letter);
+            processedLine = line.getContent().replaceFirst("[1]?\\.", letter);
         } else {
-            processedLine = line.getText().replaceFirst("[1]?\\.", map.get(currLevel).toString() + ".");
+            processedLine = line.getContent().replaceFirst("[1]?\\.", map.get(currLevel).toString() + ".");
         }
 
         return new Text(processedLine);
     }
 
+    /**
+     * Converts a number to its corresponding letters similar to the cell titles in excel.
+     * For example:
+     *
+     * 1  => "a"
+     * 26 => "z"
+     * 27 => "aa"
+     * 28 => "ab"
+     *
+     * @param n the number to be converted
+     * @return its corresponding letters
+     */
     private String numToLetters(int n) {
         StringBuilder res = new StringBuilder();
         while (n-- != 0) {

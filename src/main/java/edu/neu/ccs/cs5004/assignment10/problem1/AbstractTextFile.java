@@ -16,7 +16,8 @@ abstract class AbstractTextFile extends File<Text> {
 
     /**
      * Creates a text file given the file name.
-     * The file name given must be valid.
+     * The file name given must be valid in the filesystem and not null.
+     *
      * @param fileName the name of the file
      */
     protected AbstractTextFile(String fileName) throws FileNotFoundException {
@@ -24,7 +25,15 @@ abstract class AbstractTextFile extends File<Text> {
         this.content = readContent();
     }
 
-    protected AbstractTextFile(String fileName, Text content) {
+    /**
+     * Creates a text file given the file name.
+     * The file name given must be valid in the filesystem and not null.
+     * The content also should not be null.
+     *
+     * @param fileName the name of the file
+     * @param content the content of the file
+     */
+    protected AbstractTextFile(String fileName, Text content) throws FileNotFoundException {
         super(fileName);
         this.content = content;
     }
@@ -58,7 +67,7 @@ abstract class AbstractTextFile extends File<Text> {
     protected void writeContent() {
         try (BufferedWriter outputFile = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "UTF-8"))) {
-            outputFile.write(content.getText());
+            outputFile.write(content.getContent());
         } catch (IOException ioe) {
             System.out.println("Something went wrong! : " + ioe.getMessage());
         }

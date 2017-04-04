@@ -6,6 +6,14 @@ import java.io.FileNotFoundException;
  * Created by Jeremy on 4/2/17.
  */
 class Main {
+    /**
+     * Given the input file name as the first argument in the command line,
+     * processes the file and write the output file to the filesystem.
+     *
+     * @param args input file name passed as the first argument in the command line.
+     *             Only 1 argument is allowed to be passed in the command line.
+     * @throws FileNotFoundException
+     */
     public static void main(String[] args) throws FileNotFoundException {
         if (args.length != 1)
             throw new IllegalArgumentException("Must have ONE command line argument");

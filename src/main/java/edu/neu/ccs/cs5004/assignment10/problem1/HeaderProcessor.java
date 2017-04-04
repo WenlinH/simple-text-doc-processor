@@ -33,14 +33,20 @@ class HeaderProcessor extends AbstractLineProcessor {
             numbering.append(entry.getValue());
         }
 
-        String newLine = line.getText().replaceFirst("#+", numbering.toString());
+        String newLine = line.getContent().replaceFirst("#+", numbering.toString());
 
         return new Text(newLine.toString());
     }
 
+    /**
+     * Given a line of text with the type of header,
+     * returns the current numbering level of the header.
+     * @param line the line to be checked
+     * @return the current numbering level of the header
+     */
     private int currentNumberingLevel(Text line) {
         Pattern regex = Pattern.compile("^(#+) ");
-        Matcher matcher = regex.matcher(line.getText());
+        Matcher matcher = regex.matcher(line.getContent());
 
         int currLevel = 0;
 
