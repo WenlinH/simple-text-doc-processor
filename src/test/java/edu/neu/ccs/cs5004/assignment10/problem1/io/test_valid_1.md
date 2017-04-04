@@ -22,6 +22,13 @@
   1. Item, nesting level 2
 1. Item, nesting level 1
 
+* Item 
+* Item 
+  - Item 
+    + Item 
+    + Item 
+  - Item 
+* Item 
 
 1. this is a test.
   1. this is a test.

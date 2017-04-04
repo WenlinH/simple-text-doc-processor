@@ -13,13 +13,14 @@ import static org.junit.Assert.*;
 public class MarkdownProcessorTest extends TestUtils {
     private static final String IO_DIR = System.getProperty("user.dir") +
             "/src/test/java/edu/neu/ccs/cs5004/assignment10/problem1/io/";
-    File<Text> textFile1 = new MarkdownFile(IO_DIR + "test_valid_1.md");
-    File<Text> textFile2 = new MarkdownFile(IO_DIR + "test_valid_2.md");
+    File<Text> textFile1;
+    File<Text> textFile2;
 
     FileProcessor mdp_dup1;
     FileProcessor mdp_dup2;
     FileProcessor mdp_dup3;
     FileProcessor mdp_diff;
+    FileProcessor mdp_diff2;
 
     @Before
     public void setUp() throws Exception {
