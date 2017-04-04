@@ -1,5 +1,6 @@
 package edu.neu.ccs.cs5004.assignment10.problem1;
 
+import java.io.FileNotFoundException;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 import java.io.BufferedReader;
@@ -22,7 +23,7 @@ class MarkdownProcessor implements FileProcessor {
     }
 
     @Override
-    public File process(File inputFile) {
+    public File process(File inputFile) throws FileNotFoundException {
         AbstractTextFile textFile = new MarkdownFile(inputFile.getFileName());
         Text fileContent = textFile.getContent();
 
@@ -34,9 +35,10 @@ class MarkdownProcessor implements FileProcessor {
                 Text result = lineProcessor.processLine(new Text(line), this);
                 processedText.append(result.getText()).append("\n");
             }
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("*** OUPS! A file was not found : " + fnfe.getMessage());
         } catch (IOException ioe) {
             System.out.println("Something went wrong! : " + ioe.getMessage());
-            ioe.printStackTrace();
         }
 
         String outFileName = inputFile.getFileName() + ".out";

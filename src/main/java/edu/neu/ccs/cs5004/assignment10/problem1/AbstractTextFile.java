@@ -19,9 +19,9 @@ abstract class AbstractTextFile extends File<Text> {
      * The file name given must be valid.
      * @param fileName the name of the file
      */
-    protected AbstractTextFile(String fileName) {
+    protected AbstractTextFile(String fileName) throws FileNotFoundException {
         super(fileName);
-        this.content = readContent(fileName);
+        this.content = readContent();
     }
 
     protected AbstractTextFile(String fileName, Text content) {
@@ -35,7 +35,7 @@ abstract class AbstractTextFile extends File<Text> {
     }
 
     @Override
-    protected Text readContent(String fileName) {
+    protected Text readContent() {
         StringBuilder res = new StringBuilder();
         try (BufferedReader inputFile = new BufferedReader(new InputStreamReader(
                 new FileInputStream(fileName), "UTF-8"))) {
@@ -48,10 +48,8 @@ abstract class AbstractTextFile extends File<Text> {
             }
         } catch (FileNotFoundException fnfe) {
             System.out.println("*** OUPS! A file was not found : " + fnfe.getMessage());
-            fnfe.printStackTrace();
         } catch (IOException ioe) {
             System.out.println("Something went wrong! : " + ioe.getMessage());
-            ioe.printStackTrace();
         }
         return new Text(res.toString());
     }
@@ -59,14 +57,10 @@ abstract class AbstractTextFile extends File<Text> {
     @Override
     protected void writeContent() {
         try (BufferedWriter outputFile = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(this.fileName), "UTF-8"))) {
-            outputFile.write(this.content.getText());
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("*** OUPS! A file was not found : " + fnfe.getMessage());
-            fnfe.printStackTrace();
+                new FileOutputStream(fileName), "UTF-8"))) {
+            outputFile.write(content.getText());
         } catch (IOException ioe) {
             System.out.println("Something went wrong! : " + ioe.getMessage());
-            ioe.printStackTrace();
         }
     }
 }

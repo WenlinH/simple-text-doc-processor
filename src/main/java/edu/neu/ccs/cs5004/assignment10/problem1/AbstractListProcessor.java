@@ -17,7 +17,8 @@ abstract class AbstractListProcessor extends AbstractLineProcessor {
             numOfSpaces = match.length();
         }
 
-        if (numOfSpaces % 2 == 1)   throw new IllegalArgumentException("num of spaces can only be even"); // TODO
+        if (numOfSpaces % 2 == 1)
+            throw new IllegalMarkdownFormatException("The number of space indentations can only be even");
 
         return numOfSpaces / 2 + 1;  // current nesting level
     }

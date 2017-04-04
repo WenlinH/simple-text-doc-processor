@@ -20,7 +20,6 @@ public class MarkdownProcessorTest extends TestUtils {
     FileProcessor mdp_dup2;
     FileProcessor mdp_dup3;
     FileProcessor mdp_diff;
-    FileProcessor mdp_diff2;
 
     @Before
     public void setUp() throws Exception {
@@ -38,7 +37,7 @@ public class MarkdownProcessorTest extends TestUtils {
 
     @Test
     public void testEquals() throws Exception {
-//        Assert.assertTrue(isEqualsContractValid(mdp_dup1, mdp_dup2, mdp_dup3, mdp_diff));
+        Assert.assertTrue(isEqualsContractValid(mdp_dup1, mdp_dup2, mdp_dup3, mdp_diff));
         Assert.assertEquals(mdp_dup1, mdp_dup2);
         Assert.assertFalse(mdp_dup1.equals(mdp_diff));
         Assert.assertFalse(mdp_dup1.equals(null));
@@ -50,4 +49,21 @@ public class MarkdownProcessorTest extends TestUtils {
         Assert.assertFalse(mdp_dup1.hashCode() == mdp_diff.hashCode());
     }
 
+    @Test(expected = IllegalMarkdownFormatException.class)
+    public void testProcess_InvalidIndentation() throws Exception {
+        new MarkdownProcessor()
+                .process(new MarkdownFile(IO_DIR + "test_invalid_indentations.md"));
+    }
+
+    @Test(expected = IllegalMarkdownFormatException.class)
+    public void testProcess_InvalidSkipNestingLevel() throws Exception {
+        new MarkdownProcessor()
+                .process(new MarkdownFile(IO_DIR + "test_invalid_skipping_nesting_level.md"));
+    }
+
+    @Test(expected = IllegalMarkdownFormatException.class)
+    public void testProcess_InvalidSameNestingLevel() throws Exception {
+        new MarkdownProcessor()
+                .process(new MarkdownFile(IO_DIR + "test_invalid_item_enum_same_nesting_level.md"));
+    }
 }

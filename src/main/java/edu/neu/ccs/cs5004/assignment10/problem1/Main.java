@@ -1,10 +1,12 @@
 package edu.neu.ccs.cs5004.assignment10.problem1;
 
+import java.io.FileNotFoundException;
+
 /**
  * Created by Jeremy on 4/2/17.
  */
 class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         if (args.length != 1)
             throw new IllegalArgumentException("Must have ONE command line argument");
         String fileName = args[0];

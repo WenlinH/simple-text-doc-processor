@@ -51,4 +51,9 @@ public class MainTest {
         Assert.assertEquals(expectedOutput2, mdFileOutput2.getContent());
         Assert.assertEquals(expectedOutput2, mdFileOutput2.getContent());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMain_WrongNumberOfArguments() throws Exception {
+        Main.main(new String[] {"", ""});
+    }
 }

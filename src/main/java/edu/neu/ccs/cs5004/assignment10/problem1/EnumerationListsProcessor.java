@@ -12,12 +12,13 @@ class EnumerationListsProcessor extends AbstractListProcessor {
         int currLevel = currentNestingLevel(line);
         int lastLevel = map.size() == 0 ? 0 : map.lastKey();
 
-        if (currLevel >  lastLevel + 1)  throw new IllegalArgumentException("skipping nesting level"); // TODO: exception
+        if (currLevel >  lastLevel + 1)
+            throw new IllegalMarkdownFormatException("Cannot skip nesting level.");
         if (currLevel == lastLevel + 1)  map.put(currLevel, 1);
         else {
             int levelValue = map.get(currLevel);
             if (levelValue == -1)
-                throw new IllegalArgumentException("mixing enum and itemization at the same level is not allowed");  // TODO
+                throw new IllegalMarkdownFormatException("Mixing enum and itemization at the same nesting level is not allowed");
             map.put(currLevel, levelValue+1);
             for (int i = currLevel+1; i <= lastLevel; i++) {
                 map.remove(i);  // remove deeper nesting levels

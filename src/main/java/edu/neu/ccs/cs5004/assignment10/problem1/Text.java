@@ -15,17 +15,17 @@ class Text {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        Text text1 = (Text) o;
+        Text text1 = (Text) obj;
 
-        return getText() != null ? getText().equals(text1.getText()) : text1.getText() == null;
+        return getText().equals(text1.getText());
     }
 
     @Override
     public int hashCode() {
-        return getText() != null ? getText().hashCode() : 0;
+        return getText().hashCode();
     }
 }

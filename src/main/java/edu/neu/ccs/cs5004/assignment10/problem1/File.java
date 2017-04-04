@@ -19,7 +19,7 @@ abstract class File<T> {
         return content;
     }
 
-    protected abstract T readContent(String fileName);
+    protected abstract T readContent();
 
     protected abstract void writeContent();
 
@@ -30,11 +30,7 @@ abstract class File<T> {
 
         File<?> file = (File<?>) obj;
 
-        if (getFileName() != null ? !getFileName().equals(file.getFileName()) : file.getFileName
-                () != null)
-            return false;
-        return getContent() != null ? getContent().equals(file.getContent()) : file.getContent()
-                == null;
+        return getFileName().equals(file.getFileName()) && getContent().equals(file.getContent());
     }
 
     @Override
