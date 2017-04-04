@@ -100,21 +100,19 @@ class MarkdownProcessor implements FileProcessor {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    MarkdownProcessor that = (MarkdownProcessor) o;
-
-    if (getHeaderLevel() != null ? !getHeaderLevel().equals(that.getHeaderLevel()) : that
-            .getHeaderLevel() != null)
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
       return false;
-    if (getListLevels() != null ? !getListLevels().equals(that.getListLevels()) : that
-            .getListLevels() != null)
-      return false;
-    return processedText != null ? processedText.toString().equals(that.processedText.toString())
-            : that
-            .processedText == null;
+    }
+
+    MarkdownProcessor that = (MarkdownProcessor) obj;
+
+    return getHeaderLevel().equals(that.getHeaderLevel())
+            && getListLevels().equals(that.getListLevels())
+            && processedText.toString().equals(that.processedText.toString());
   }
 
   @Override

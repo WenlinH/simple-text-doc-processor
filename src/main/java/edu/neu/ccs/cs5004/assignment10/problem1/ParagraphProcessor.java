@@ -6,8 +6,9 @@ package edu.neu.ccs.cs5004.assignment10.problem1;
 class ParagraphProcessor extends AbstractLineProcessor {
   @Override
   public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
-    if (!markdownProcessor.getListLevels().isEmpty() && line.getContent().trim().equals(""))
+    if (!markdownProcessor.getListLevels().isEmpty() && line.getContent().trim().equals("")) {
       markdownProcessor.resetListLevel();
+    }
     return line;
   }
 }

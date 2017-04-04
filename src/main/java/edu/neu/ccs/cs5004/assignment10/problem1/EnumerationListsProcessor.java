@@ -12,14 +12,17 @@ class EnumerationListsProcessor extends AbstractListProcessor {
     int currLevel = currentNestingLevel(line);
     int lastLevel = map.size() == 0 ? 0 : map.lastKey();
 
-    if (currLevel > lastLevel + 1)
+    if (currLevel > lastLevel + 1) {
       throw new IllegalMarkdownFormatException("Cannot skip nesting level.");
-    if (currLevel == lastLevel + 1) map.put(currLevel, 1);
-    else {
+    }
+    if (currLevel == lastLevel + 1) {
+      map.put(currLevel, 1);
+    } else {
       int levelValue = map.get(currLevel);
-      if (levelValue == -1)
-        throw new IllegalMarkdownFormatException("Mixing enum and itemization at the same nesting" +
-                " level is not allowed");
+      if (levelValue == -1) {
+        throw new IllegalMarkdownFormatException(
+                "Mixing enum and itemization at the same nesting level is not allowed");
+      }
       map.put(currLevel, levelValue + 1);
       for (int i = currLevel + 1; i <= lastLevel; i++) {
         map.remove(i);  // remove deeper nesting levels
@@ -30,8 +33,8 @@ class EnumerationListsProcessor extends AbstractListProcessor {
       String letter = numToLetters(map.get(currLevel));
       processedLine = line.getContent().replaceFirst("[1]?\\.", letter);
     } else {
-      processedLine = line.getContent().replaceFirst("[1]?\\.", map.get(currLevel).toString() + "" +
-              ".");
+      processedLine = line.getContent().replaceFirst("[1]?\\.",
+                                                      map.get(currLevel).toString() + "" + ".");
     }
 
     return new Text(processedLine);
@@ -41,20 +44,20 @@ class EnumerationListsProcessor extends AbstractListProcessor {
    * Converts a number to its corresponding letters similar to the cell titles in excel.
    * For example:
    *
-   * 1  => "a"
-   * 26 => "z"
-   * 27 => "aa"
-   * 28 => "ab"
+   * <p>1  => "a"
+   *    26 => "z"
+   *    27 => "aa"
+   *    28 => "ab"
    *
-   * @param n the number to be converted
+   * @param num the number to be converted
    *
    * @return its corresponding letters
    */
-  private String numToLetters(int n) {
+  private String numToLetters(int num) {
     StringBuilder res = new StringBuilder();
-    while (n-- != 0) {
-      res.append((char) ('a' + n % 26));
-      n /= 26;
+    while (num-- != 0) {
+      res.append((char) ('a' + num % 26));
+      num /= 26;
     }
     return res.reverse().append(".").toString();
   }

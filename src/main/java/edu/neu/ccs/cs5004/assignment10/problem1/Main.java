@@ -16,8 +16,9 @@ class Main {
    * @throws FileNotFoundException the exception that gets thrown when a file
    */
   public static void main(String[] args) throws FileNotFoundException {
-    if (args.length != 1)
+    if (args.length != 1) {
       throw new IllegalArgumentException("Must have ONE command line argument");
+    }
     String fileName = args[0];
     File inputTextFile = new MarkdownFile(fileName);
     FileProcessor mdProcessor = new MarkdownProcessor();

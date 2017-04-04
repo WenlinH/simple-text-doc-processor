@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  */
 abstract class AbstractListProcessor extends AbstractLineProcessor {
   /**
-   * Given a line of text with the type of list, returns the current nesting level of the list
+   * Given a line of text with the type of list, returns the current nesting level of the list.
    *
    * @param line the line to be checked
    *
@@ -24,8 +24,9 @@ abstract class AbstractListProcessor extends AbstractLineProcessor {
       numOfSpaces = match.length();
     }
 
-    if (numOfSpaces % 2 == 1)
+    if (numOfSpaces % 2 != 0) {
       throw new IllegalMarkdownFormatException("The number of space indentations can only be even");
+    }
 
     return numOfSpaces / 2 + 1;  // current nesting level
   }

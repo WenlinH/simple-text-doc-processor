@@ -18,18 +18,24 @@ class HeaderProcessor extends AbstractLineProcessor {
     int currLevel = currentNumberingLevel(line);
 
     int lastLevel = map.size() == 0 ? 0 : map.lastKey();
-    if (currLevel > lastLevel)  // fill in gaps with 1s for deeper nesting levels
-      for (int i = lastLevel + 1; i <= currLevel; i++)
+    if (currLevel > lastLevel) { // fill in gaps with 1s for deeper nesting levels
+      for (int i = lastLevel + 1; i <= currLevel; i++) {
         map.put(i, 1);
-    else
+      }
+    } else {
       map.put(currLevel, map.get(currLevel) + 1);
+    }
 
-    if (currLevel < lastLevel)  // remove deeper nesting levels
-      for (int i = currLevel + 1; i <= lastLevel; i++)
+    if (currLevel < lastLevel) { // remove deeper nesting levels
+      for (int i = currLevel + 1; i <= lastLevel; i++) {
         map.remove(i);
+      }
+    }
 
     for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-      if (numbering.length() != 0) numbering.append(".");
+      if (numbering.length() != 0) {
+        numbering.append(".");
+      }
       numbering.append(entry.getValue());
     }
 

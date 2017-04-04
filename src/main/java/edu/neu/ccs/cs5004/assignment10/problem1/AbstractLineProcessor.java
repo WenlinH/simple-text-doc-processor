@@ -19,7 +19,7 @@ abstract class AbstractLineProcessor implements LineProcessor {
    * - header
    * - itemization
    * - enumeration
-   * - paragraph
+   * - paragraph.
    *
    * @param line a line to be processed by the line processor
    *
