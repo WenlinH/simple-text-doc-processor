@@ -22,4 +22,25 @@ abstract class File<T> {
     protected abstract T readContent(String fileName);
 
     protected abstract void writeContent();
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        File<?> file = (File<?>) obj;
+
+        if (getFileName() != null ? !getFileName().equals(file.getFileName()) : file.getFileName
+                () != null)
+            return false;
+        return getContent() != null ? getContent().equals(file.getContent()) : file.getContent()
+                == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getFileName() != null ? getFileName().hashCode() : 0;
+        result = 31 * result + (getContent() != null ? getContent().hashCode() : 0);
+        return result;
+    }
 }

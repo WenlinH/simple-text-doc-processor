@@ -72,4 +72,29 @@ class MarkdownProcessor implements FileProcessor {
     protected void resetListLevel() {
         this.listLevels = new TreeMap<>();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MarkdownProcessor that = (MarkdownProcessor) o;
+
+        if (getHeaderLevel() != null ? !getHeaderLevel().equals(that.getHeaderLevel()) : that
+                .getHeaderLevel() != null)
+            return false;
+        if (getListLevels() != null ? !getListLevels().equals(that.getListLevels()) : that
+                .getListLevels() != null)
+            return false;
+        return processedText != null ? processedText.toString().equals(that.processedText.toString()) : that
+                .processedText == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getHeaderLevel() != null ? getHeaderLevel().hashCode() : 0;
+        result = 31 * result + (getListLevels() != null ? getListLevels().hashCode() : 0);
+        result = 31 * result + (processedText != null ? processedText.hashCode() : 0);
+        return result;
+    }
 }

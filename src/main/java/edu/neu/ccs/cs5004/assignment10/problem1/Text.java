@@ -13,4 +13,19 @@ class Text {
     public String getText() {
         return text;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Text text1 = (Text) o;
+
+        return getText() != null ? getText().equals(text1.getText()) : text1.getText() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getText() != null ? getText().hashCode() : 0;
+    }
 }
