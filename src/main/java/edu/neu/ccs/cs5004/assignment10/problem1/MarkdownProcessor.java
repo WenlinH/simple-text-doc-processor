@@ -94,7 +94,7 @@ class MarkdownProcessor implements FileProcessor {
     public int hashCode() {
         int result = getHeaderLevel() != null ? getHeaderLevel().hashCode() : 0;
         result = 31 * result + (getListLevels() != null ? getListLevels().hashCode() : 0);
-        result = 31 * result + (processedText != null ? processedText.hashCode() : 0);
+        result = 31 * result + (processedText != null ? processedText.toString().hashCode() : 0);
         return result;
     }
 }

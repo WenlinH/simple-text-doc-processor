@@ -14,12 +14,17 @@ import java.io.BufferedWriter;
  */
 abstract class AbstractTextFile extends File<Text> {
 
-    public AbstractTextFile(String fileName) {
+    /**
+     * Creates a text file given the file name.
+     * The file name given must be valid.
+     * @param fileName the name of the file
+     */
+    protected AbstractTextFile(String fileName) {
         super(fileName);
         this.content = readContent(fileName);
     }
 
-    public AbstractTextFile(String fileName, Text content) {
+    protected AbstractTextFile(String fileName, Text content) {
         super(fileName);
         this.content = content;
     }
