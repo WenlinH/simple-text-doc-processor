@@ -56,7 +56,7 @@ public class FileTest extends edu.neu.ccs.cs5004.assignment10.problem1.testutils
   public void testLoadingANonExistentFile() throws Exception {
     new MarkdownFile("/dummy/directory/name/" + "file_that_does_not_exist.md");
     Assert.assertEquals(
-            "*** OUPS! A file was not found : /dummy/directory/name/file_that_does_not_exist.md "
+            "The file was not found : /dummy/directory/name/file_that_does_not_exist.md "
                     + "(No such file or directory)\n", outContent.toString());
   }
 }

@@ -13,7 +13,7 @@ public interface FileProcessor {
    *
    * @return the output file
    * @throws FileNotFoundException the exception that gets thrown when a file
-   *                               with the specified pathname does not exist
+   *                               with the specified file path does not exist
    */
   File process(File input) throws FileNotFoundException;
 }

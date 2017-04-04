@@ -16,25 +16,27 @@ import java.io.OutputStreamWriter;
 abstract class AbstractTextFile extends File<Text> {
 
   /**
-   * Creates a text file given the file name.
-   * The file name given must be valid in the filesystem and not null.
+   * Creates a text file given the file path.
+   * The file path given must be valid in the filesystem and not null.
    *
-   * @param fileName the name of the file
+   * @param filePath the path of the file
    * @throws FileNotFoundException the exception that gets thrown when a file
+   *                               with the specified pathpath does not exist
    */
-  protected AbstractTextFile(String fileName) throws FileNotFoundException {
-    super(fileName);
+  protected AbstractTextFile(String filePath) throws FileNotFoundException {
+    super(filePath);
     this.content = readContent();
   }
 
   /**
-   * Creates a text file given the file name.
-   * The file name given must be valid in the filesystem and not null.
+   * Creates a text file given the file path.
+   * The file path given must be valid in the filesystem and not null.
    * The content also should not be null.
    *
-   * @param fileName the name of the file
+   * @param fileName the path of the file
    * @param content  the content of the file
    * @throws FileNotFoundException the exception that gets thrown when a file
+   *                               with the specified file path does not exist
    */
   protected AbstractTextFile(String fileName, Text content) throws FileNotFoundException {
     super(fileName);
@@ -50,7 +52,7 @@ abstract class AbstractTextFile extends File<Text> {
   protected Text readContent() {
     StringBuilder res = new StringBuilder();
     try (BufferedReader inputFile = new BufferedReader(new InputStreamReader(
-            new FileInputStream(fileName), "UTF-8"))) {
+            new FileInputStream(filePath), "UTF-8"))) {
       String line;
       while ((line = inputFile.readLine()) != null) {
         if (res.length() != 0) {
@@ -59,7 +61,7 @@ abstract class AbstractTextFile extends File<Text> {
         res.append(line);
       }
     } catch (FileNotFoundException fnfe) {
-      System.out.println("*** OUPS! A file was not found : " + fnfe.getMessage());
+      System.out.println("The file was not found : " + fnfe.getMessage());
     } catch (IOException ioe) {
       System.out.println("Something went wrong! : " + ioe.getMessage());
     }
@@ -69,8 +71,8 @@ abstract class AbstractTextFile extends File<Text> {
   @Override
   protected void writeContent() {
     try (BufferedWriter outputFile = new BufferedWriter(new OutputStreamWriter(
-            new FileOutputStream(fileName), "UTF-8"))) {
-      outputFile.write(content.getContent());
+            new FileOutputStream(filePath), "UTF-8"))) {
+      outputFile.write(content.getText());
     } catch (IOException ioe) {
       System.out.println("Something went wrong! : " + ioe.getMessage());
     }

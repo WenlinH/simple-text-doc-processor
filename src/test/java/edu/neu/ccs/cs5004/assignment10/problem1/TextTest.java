@@ -24,7 +24,7 @@ public class TextTest extends TestUtils {
   }
 
   @Test
-  public void equals() throws Exception {
+  public void testEquals() throws Exception {
     Assert.assertTrue(isEqualsContractValid(text_dup1, text_dup2, text_dup3, text_diff));
     Assert.assertEquals(text_dup1, text_dup2);
     Assert.assertFalse(text_dup1.equals(text_diff));

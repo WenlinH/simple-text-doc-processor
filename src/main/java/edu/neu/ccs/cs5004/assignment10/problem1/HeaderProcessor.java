@@ -39,7 +39,7 @@ class HeaderProcessor extends AbstractLineProcessor {
       numbering.append(entry.getValue());
     }
 
-    String newLine = line.getContent().replaceFirst("#+", numbering.toString());
+    String newLine = line.getText().replaceFirst("#+", numbering.toString());
 
     return new Text(newLine.toString());
   }
@@ -54,7 +54,7 @@ class HeaderProcessor extends AbstractLineProcessor {
    */
   private int currentNumberingLevel(Text line) {
     Pattern regex = Pattern.compile("^(#+) ");
-    Matcher matcher = regex.matcher(line.getContent());
+    Matcher matcher = regex.matcher(line.getText());
 
     int currLevel = 0;
 

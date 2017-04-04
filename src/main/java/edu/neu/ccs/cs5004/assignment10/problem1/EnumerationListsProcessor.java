@@ -31,9 +31,9 @@ class EnumerationListsProcessor extends AbstractListProcessor {
     String processedLine;
     if (currLevel % 2 == 0) {
       String letter = numToLetters(map.get(currLevel));
-      processedLine = line.getContent().replaceFirst("[1]?\\.", letter);
+      processedLine = line.getText().replaceFirst("[1]?\\.", letter);
     } else {
-      processedLine = line.getContent().replaceFirst("[1]?\\.",
+      processedLine = line.getText().replaceFirst("[1]?\\.",
                                                       map.get(currLevel).toString() + "" + ".");
     }
 

@@ -2,7 +2,7 @@
 
 Headers appear on a line of their own. A header starts with the one or
 more occurrences of the symbol `#` followed
-by one space followed by content and ends with a newline.
+by one space followed by text and ends with a newline.
 Headers are section titles. The number of `#` symbols indicate the
 nesting of headers.
 
@@ -14,7 +14,7 @@ Nested Headers might appear out of order, for example
 
 2 Paragraphs
 
-Paragraphs are free form content. Paragraphs are separated by new lines.
+Paragraphs are free form text. Paragraphs are separated by new lines.
 
 This is the second paragraph in this section
 
@@ -26,7 +26,7 @@ There are 2 kinds of lists, itemizations and enumerations.
 
 These are also called "bullet" lists. An itemization list always starts on a new line
 and can use any of the following simbols to denote the beginning of at item
-`*` or `+` or `-` followed by one space and then content for example
+`*` or `+` or `-` followed by one space and then text for example
 
 * itemization list, first element
 * itemization list, second element

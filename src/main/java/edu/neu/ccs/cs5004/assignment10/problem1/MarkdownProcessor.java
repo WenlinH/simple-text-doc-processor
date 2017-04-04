@@ -27,25 +27,23 @@ class MarkdownProcessor implements FileProcessor {
 
   @Override
   public File process(File inputFile) throws FileNotFoundException {
-    AbstractTextFile textFile = new MarkdownFile(inputFile.getFileName());
+    AbstractTextFile textFile = new MarkdownFile(inputFile.getFilePath());
     Text fileContent = textFile.getContent();
 
     try (BufferedReader bufferedReader = new BufferedReader(new StringReader(fileContent
-            .getContent()))) {
+            .getText()))) {
       String line;
       while ((line = bufferedReader.readLine()) != null) {
         String type = AbstractLineProcessor.getLineTextType(line);
         LineProcessor lineProcessor = getLineProcessor(type);
         Text result = lineProcessor.processLine(new Text(line), this);
-        processedText.append(result.getContent()).append("\n");
+        processedText.append(result.getText()).append("\n");
       }
-    } catch (FileNotFoundException fnfe) {
-      System.out.println("*** OUPS! A file was not found : " + fnfe.getMessage());
     } catch (IOException ioe) {
       System.out.println("Something went wrong! : " + ioe.getMessage());
     }
 
-    String outFileName = inputFile.getFileName() + ".out";
+    String outFileName = inputFile.getFilePath() + ".out";
     return new MarkdownFile(outFileName, new Text(this.processedText.toString()));
   }
 
@@ -53,7 +51,6 @@ class MarkdownProcessor implements FileProcessor {
    * Given the type of a line, returns the corresponding line processor.
    *
    * @param type the type of a line
-   *
    * @return the corresponding line processor
    */
   private LineProcessor getLineProcessor(String type) {
@@ -117,9 +114,9 @@ class MarkdownProcessor implements FileProcessor {
 
   @Override
   public int hashCode() {
-    int result = getHeaderLevel() != null ? getHeaderLevel().hashCode() : 0;
-    result = 31 * result + (getListLevels() != null ? getListLevels().hashCode() : 0);
-    result = 31 * result + (processedText != null ? processedText.toString().hashCode() : 0);
+    int result = getHeaderLevel().hashCode();
+    result = 31 * result + getListLevels().hashCode();
+    result = 31 * result + processedText.toString().hashCode();
     return result;
   }
 }

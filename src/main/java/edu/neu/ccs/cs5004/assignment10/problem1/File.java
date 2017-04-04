@@ -10,25 +10,26 @@ package edu.neu.ccs.cs5004.assignment10.problem1;
  * @param <T> the type of the file.
  */
 abstract class File<T> {
-  protected String fileName;
+  protected String filePath;
   protected T content;
 
   /**
-   * Creates a file given the file name (whole path included).
+   * Creates a file given the file path.
+   * The file path given must not be null.
    *
-   * @param fileName the name of the file
+   * @param filePath the path of the file
    */
-  public File(String fileName) {
-    this.fileName = fileName;
+  public File(String filePath) {
+    this.filePath = filePath;
   }
 
   /**
-   * Getter for property 'fileName'.
+   * Getter for property 'filePath'.
    *
-   * @return Value for property 'fileName'
+   * @return Value for property 'filePath'
    */
-  protected String getFileName() {
-    return fileName;
+  protected String getFilePath() {
+    return filePath;
   }
 
   /**
@@ -48,7 +49,7 @@ abstract class File<T> {
   protected abstract T readContent();
 
   /**
-   * Write the file to the disk with its file name and its content.
+   * Write the file to the disk with its file path and its content.
    */
   protected abstract void writeContent();
 
@@ -63,13 +64,13 @@ abstract class File<T> {
 
     File<?> file = (File<?>) obj;
 
-    return getFileName().equals(file.getFileName()) && getContent().equals(file.getContent());
+    return getFilePath().equals(file.getFilePath()) && getContent().equals(file.getContent());
   }
 
   @Override
   public int hashCode() {
-    int result = getFileName() != null ? getFileName().hashCode() : 0;
-    result = 31 * result + (getContent() != null ? getContent().hashCode() : 0);
+    int result = getFilePath().hashCode();
+    result = 31 * result + getContent().hashCode();
     return result;
   }
 }

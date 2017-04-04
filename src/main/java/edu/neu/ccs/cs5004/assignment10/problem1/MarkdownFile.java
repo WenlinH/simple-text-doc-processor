@@ -7,24 +7,26 @@ import java.io.FileNotFoundException;
  */
 class MarkdownFile extends AbstractTextFile {
   /**
-   * Creates a markdown file given the file name.
-   * The file name given must be valid in the filesystem and not null.
+   * Creates a markdown file given the file path.
+   * The file path given must be valid in the filesystem and not null.
    *
-   * @param fileName the name of the file
+   * @param filePath the path of the file
    * @throws FileNotFoundException the exception that gets thrown when a file
+   *                               with the specified file path does not exist
    */
-  public MarkdownFile(String fileName) throws FileNotFoundException {
-    super(fileName);
+  public MarkdownFile(String filePath) throws FileNotFoundException {
+    super(filePath);
   }
 
   /**
-   * Creates a markdown file given the file name.
-   * The file name given must be valid in the filesystem and not null.
+   * Creates a markdown file given the file path.
+   * The file path given must be valid in the filesystem and not null.
    * The content also should not be null.
    *
-   * @param fileName the name of the file
+   * @param fileName the path of the file
    * @param content  the content of the file
    * @throws FileNotFoundException the exception that gets thrown when a file
+   *                               with the specified file path does not exist
    */
   public MarkdownFile(String fileName, Text content) throws FileNotFoundException {
     super(fileName, content);
