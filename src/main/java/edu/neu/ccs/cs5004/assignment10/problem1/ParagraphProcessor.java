@@ -7,7 +7,7 @@ class ParagraphProcessor extends AbstractLineProcessor {
   @Override
   public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
     if (!markdownProcessor.getListLevels().isEmpty() && line.getText().trim().equals("")) {
-      markdownProcessor.resetListLevel();
+      markdownProcessor.resetListLevels();
     }
     return line;
   }

@@ -16,7 +16,7 @@ abstract class AbstractListProcessor extends AbstractLineProcessor {
    */
   protected int currentNestingLevel(Text line) {
     Pattern regex = Pattern.compile("^([ ]*)(1.|.|\\*) .*"); // match all leading spaces,
-    Matcher matcher = regex.matcher(line.getText());      // followed by . or 1. or *
+    Matcher matcher = regex.matcher(line.getText());         // followed by . or 1. or *
     int numOfSpaces = 0;
 
     if (matcher.find()) {

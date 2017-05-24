@@ -1,7 +1,7 @@
 package edu.neu.ccs.cs5004.assignment10.problem1;
 
 import java.util.Map;
-import java.util.NavigableMap;
+import java.util.SortedMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,7 +12,7 @@ class HeaderProcessor extends AbstractLineProcessor {
   @Override
   public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
 
-    NavigableMap<Integer, Integer> map = markdownProcessor.getHeaderLevel();
+    SortedMap<Integer, Integer> map = markdownProcessor.getHeaderLevels();
     StringBuilder numbering = new StringBuilder();
 
     int currLevel = currentNumberingLevel(line);

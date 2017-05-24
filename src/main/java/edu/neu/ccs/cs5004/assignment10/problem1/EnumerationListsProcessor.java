@@ -1,6 +1,6 @@
 package edu.neu.ccs.cs5004.assignment10.problem1;
 
-import java.util.NavigableMap;
+import java.util.SortedMap;
 
 /**
  * Created by Jeremy on 4/2/17.
@@ -8,7 +8,7 @@ import java.util.NavigableMap;
 class EnumerationListsProcessor extends AbstractListProcessor {
   @Override
   public Text processLine(Text line, MarkdownProcessor markdownProcessor) {
-    NavigableMap<Integer, Integer> map = markdownProcessor.getListLevels();
+    SortedMap<Integer, Integer> map = markdownProcessor.getListLevels();
     int currLevel = currentNestingLevel(line);
     int lastLevel = map.size() == 0 ? 0 : map.lastKey();
 
@@ -56,7 +56,7 @@ class EnumerationListsProcessor extends AbstractListProcessor {
   private String numToLetters(int num) {
     StringBuilder res = new StringBuilder();
     while (num-- != 0) {
-      res.append((char) ('a' + num % 26));
+      res.append(Character.toChars('a' + num % 26));
       num /= 26;
     }
     return res.reverse().append(".").toString();

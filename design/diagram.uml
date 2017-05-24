@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>edu.neu.ccs.cs5004.assignment10.problem1.AbstractLineProcessor</OriginalElement>
+  <nodes>
+    <node x="718.6020186335406" y="145.5">edu.neu.ccs.cs5004.assignment10.problem1.AbstractLineProcessor</node>
+    <node x="1238.3306935817802" y="1046.0">edu.neu.ccs.cs5004.assignment10.problem1.Main</node>
+    <node x="723.6806935817804" y="723.0">edu.neu.ccs.cs5004.assignment10.problem1.MarkdownProcessor</node>
+    <node x="1498.1020186335404" y="580.0">edu.neu.ccs.cs5004.assignment10.problem1.MarkdownFile</node>
+    <node x="108.40372670807437" y="190.0">edu.neu.ccs.cs5004.assignment10.problem1.IllegalMarkdownFormatException</node>
+    <node x="634.2827122153208" y="434.5">edu.neu.ccs.cs5004.assignment10.problem1.ParagraphProcessor</node>
+    <node x="1075.1020186335404" y="423.5">edu.neu.ccs.cs5004.assignment10.problem1.HeaderProcessor</node>
+    <node x="191.0" y="580.0">edu.neu.ccs.cs5004.assignment10.problem1.EnumerationListsProcessor</node>
+    <node x="1208.0537267080745" y="156.0">edu.neu.ccs.cs5004.assignment10.problem1.Text</node>
+    <node x="1460.1020186335404" y="390.0">edu.neu.ccs.cs5004.assignment10.problem1.AbstractTextFile</node>
+    <node x="286.9037267080744" y="434.5">edu.neu.ccs.cs5004.assignment10.problem1.AbstractListProcessor</node>
+    <node x="0.0" y="591.0">edu.neu.ccs.cs5004.assignment10.problem1.FileProcessor</node>
+    <node x="667.1020186335406" y="0.0">edu.neu.ccs.cs5004.assignment10.problem1.LineProcessor</node>
+    <node x="1526.8520186335404" y="101.0">edu.neu.ccs.cs5004.assignment10.problem1.File</node>
+    <node x="739.4037267080744" y="591.0">edu.neu.ccs.cs5004.assignment10.problem1.ItemizationListProcessor</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.AbstractLineProcessor" target="edu.neu.ccs.cs5004.assignment10.problem1.LineProcessor">
+      <point x="1.1368683772161603E-13" y="-70.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.ParagraphProcessor" target="edu.neu.ccs.cs5004.assignment10.problem1.AbstractLineProcessor">
+      <point x="1.1368683772161603E-13" y="-25.5" />
+      <point x="806.2827122153209" y="350.0" />
+      <point x="839.1020186335406" y="350.0" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.MarkdownProcessor" target="edu.neu.ccs.cs5004.assignment10.problem1.FileProcessor">
+      <point x="-223.71428571428555" y="-136.5" />
+      <point x="760.9664078674948" y="703.0" />
+      <point x="85.5" y="703.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.AbstractListProcessor" target="edu.neu.ccs.cs5004.assignment10.problem1.AbstractLineProcessor">
+      <point x="62.25" y="-25.5" />
+      <point x="473.6537267080744" y="350.0" />
+      <point x="758.7686853002072" y="350.0" />
+      <point x="-80.33333333333337" y="70.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.ItemizationListProcessor" target="edu.neu.ccs.cs5004.assignment10.problem1.AbstractListProcessor">
+      <point x="-86.0" y="-25.5" />
+      <point x="825.4037267080744" y="550.0" />
+      <point x="473.6537267080744" y="550.0" />
+      <point x="62.25" y="25.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.HeaderProcessor" target="edu.neu.ccs.cs5004.assignment10.problem1.AbstractLineProcessor">
+      <point x="-91.0" y="-36.5" />
+      <point x="1166.1020186335404" y="350.0" />
+      <point x="919.4353519668739" y="350.0" />
+      <point x="80.33333333333337" y="70.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.EnumerationListsProcessor" target="edu.neu.ccs.cs5004.assignment10.problem1.AbstractListProcessor">
+      <point x="0.0" y="-36.5" />
+      <point x="373.0" y="560.0" />
+      <point x="349.1537267080744" y="560.0" />
+      <point x="-62.25" y="25.5" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.MarkdownFile" target="edu.neu.ccs.cs5004.assignment10.problem1.AbstractTextFile">
+      <point x="0.0" y="-36.5" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="edu.neu.ccs.cs5004.assignment10.problem1.AbstractTextFile" target="edu.neu.ccs.cs5004.assignment10.problem1.File">
+      <point x="74.75" y="-70.0" />
+      <point x="0.0" y="114.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7000000000000001" x="642.4285714285713" y="504.0" />
+  <SelectedNodes>
+    <node>edu.neu.ccs.cs5004.assignment10.problem1.AbstractLineProcessor</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

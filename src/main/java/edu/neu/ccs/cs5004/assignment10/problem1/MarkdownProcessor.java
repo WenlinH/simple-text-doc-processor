@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
-import java.util.NavigableMap;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 
@@ -12,15 +12,15 @@ import java.util.TreeMap;
  * Created by Jeremy on 4/2/17.
  */
 class MarkdownProcessor implements FileProcessor {
-  private NavigableMap<Integer, Integer> headerLevel;
-  private NavigableMap<Integer, Integer> listLevels;
+  private SortedMap<Integer, Integer> headerLevels;
+  private SortedMap<Integer, Integer> listLevels;
   private StringBuilder processedText;
 
   /**
    * Creates a markdown processor with all its fields initialized.
    */
   public MarkdownProcessor() {
-    headerLevel = new TreeMap();
+    headerLevels = new TreeMap();
     listLevels = new TreeMap();
     processedText = new StringBuilder();
   }
@@ -72,12 +72,12 @@ class MarkdownProcessor implements FileProcessor {
   }
 
   /**
-   * Getter for property 'headerLevel'.
+   * Getter for property 'headerLevels'.
    *
-   * @return Value for property 'headerLevel'
+   * @return Value for property 'headerLevels'
    */
-  protected NavigableMap<Integer, Integer> getHeaderLevel() {
-    return headerLevel;
+  protected SortedMap<Integer, Integer> getHeaderLevels() {
+    return headerLevels;
   }
 
   /**
@@ -85,14 +85,14 @@ class MarkdownProcessor implements FileProcessor {
    *
    * @return Value for property 'listLevels'
    */
-  protected NavigableMap<Integer, Integer> getListLevels() {
+  protected SortedMap<Integer, Integer> getListLevels() {
     return listLevels;
   }
 
   /**
    * Resets the listLevel field to its initial state.
    */
-  protected void resetListLevel() {
+  protected void resetListLevels() {
     this.listLevels = new TreeMap<>();
   }
 
@@ -107,14 +107,14 @@ class MarkdownProcessor implements FileProcessor {
 
     MarkdownProcessor that = (MarkdownProcessor) obj;
 
-    return getHeaderLevel().equals(that.getHeaderLevel())
+    return getHeaderLevels().equals(that.getHeaderLevels())
             && getListLevels().equals(that.getListLevels())
             && processedText.toString().equals(that.processedText.toString());
   }
 
   @Override
   public int hashCode() {
-    int result = getHeaderLevel().hashCode();
+    int result = getHeaderLevels().hashCode();
     result = 31 * result + getListLevels().hashCode();
     result = 31 * result + processedText.toString().hashCode();
     return result;
